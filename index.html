@@ -1,0 +1,178 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Science Laboratory - Version 0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app-container">
+        <!-- HEADER / NAVIGATION -->
+        <header class="top-nav">
+            <div class="logo">
+                <span class="pulse-icon">🧪</span>
+                <span class="title-text">Virtual Lab <small>v0.1 Prototype</small></span>
+            </div>
+            <div class="user-rank-card">
+                <span class="rank-label">Current Status:</span>
+                <span id="rank-display" class="rank-badge rank-observer">Observer</span>
+            </div>
+        </header>
+
+        <!-- HOMEPAGE SCREEN -->
+        <main id="home-screen" class="screen active">
+            <div class="hero-section">
+                <div class="flux-card">
+                    <div class="flux-avatar-container">
+                        <div class="flux-slime" id="home-flux-avatar">
+                            <div class="flux-eyes">
+                                <div class="eye left"></div>
+                                <div class="eye right"></div>
+                            </div>
+                            <div class="flux-mouth"></div>
+                        </div>
+                    </div>
+                    <div class="flux-intro">
+                        <h2>Hey! Main Flux hoon 🧪</h2>
+                        <p class="hinglish-text">
+                            Main lab ka ek accidental intelligent lifeform hoon! 
+                            Yahan tumhe correct answers spoon-feed nahi kiye jaayenge. 
+                            Experiment karo, galatiyan karo, aur khud discover karo!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <span class="class-tag">Class 11 & 12 Physics</span>
+                        <h3>Mechanical Properties of Solids</h3>
+                    </div>
+                    <p>Experiment: Elastic and Plastic Behaviour of Wires under Stress.</p>
+                    <div class="module-actions">
+                        <button id="btn-start-exp" class="btn btn-primary btn-large">
+                            Experiment Start Karo 🚀
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- EXPERIMENT SCREEN -->
+        <main id="experiment-screen" class="screen">
+            <div class="exp-layout">
+                <!-- LEFT PANEL: EQUIPMENT AREA -->
+                <section class="panel equipment-panel">
+                    <div class="panel-header">
+                        <h3>Laboratory Apparatus</h3>
+                        <button id="btn-reset" class="btn btn-danger btn-sm">Reset Apparatus 🔄</button>
+                    </div>
+                    
+                    <div class="apparatus-container">
+                        <div class="top-rig">
+                            <div class="rigid-support"></div>
+                            <div class="wire-mount"></div>
+                        </div>
+                        <div class="simulation-view">
+                            <div class="scale-ruler">
+                                <span class="scale-mark" style="top: 0%">0mm</span>
+                                <span class="scale-mark" style="top: 25%">25mm</span>
+                                <span class="scale-mark" style="top: 50%">50mm</span>
+                                <span class="scale-mark" style="top: 75%">75mm</span>
+                                <span class="scale-mark" style="top: 100%">100mm</span>
+                            </div>
+                            <div class="wire-assembly">
+                                <div id="steel-wire" class="steel-wire"></div>
+                                <div id="load-hanger" class="load-hanger">
+                                    <div class="pointer">◄</div>
+                                    <div class="weight-box">
+                                        <span id="force-val-display">0 N</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="controls-container">
+                        <div class="slider-group">
+                            <label for="force-slider">
+                                Load / Force Apply Karo (Newton):
+                                <strong id="slider-force-readout">0 N</strong>
+                            </label>
+                            <input type="range" id="force-slider" min="0" max="100" value="0" step="1">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- RIGHT PANEL: MANUAL & FLUX OBSERVATIONS -->
+                <section class="panel manual-panel">
+                    <!-- FLUX COMPANION BOX -->
+                    <div class="flux-companion-box">
+                        <div class="flux-avatar-small">
+                            <div class="flux-slime mini" id="exp-flux-avatar">
+                                <div class="flux-eyes">
+                                    <div class="eye left"></div>
+                                    <div class="eye right"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flux-bubble">
+                            <span class="flux-name">Flux:</span>
+                            <p id="flux-dialogue" class="hinglish-text">
+                                Slider move karke load apply karo... dekho wire mein kya changes aate hain!
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- OBSERVATIONS SECTION -->
+                    <div class="observation-section">
+                        <h4>Observation Note Karo 📝</h4>
+                        <div class="obs-input-group">
+                            <textarea id="obs-input" placeholder="Jo bhi notice kiya yahan likho... (e.g. Force badhane par stretch badha, wapas zero karne par kya hua?)"></textarea>
+                            <button id="btn-save-obs" class="btn btn-secondary">Note Karo</button>
+                        </div>
+
+                        <div class="obs-history-container">
+                            <h5>Your Saved Observations:</h5>
+                            <ul id="obs-list" class="obs-list">
+                                <li class="empty-msg">Abhi koi observation record nahi hui hai.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="manual-footer">
+                        <button id="btn-complete-exp" class="btn btn-success btn-block">
+                            Experiment Finish Karo & Report Dekho 🎓
+                        </button>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- GRADUATION MODAL -->
+        <div id="cert-modal" class="modal-backdrop">
+            <div class="modal-content certificate-card">
+                <div class="cert-header">
+                    <h2>🎓 VIRTUAL LABORATORY</h2>
+                    <h3>Version 0 Pioneer Certificate</h3>
+                </div>
+                <div class="cert-body">
+                    <p>This certifies that our explorer has successfully demonstrated curiosity, scientific observation, and analytical skills in</p>
+                    <h4>Mechanical Properties of Solids</h4>
+                    <p class="cert-desc">"You were among the first explorers of Virtual Laboratory Version 0."</p>
+                    <div class="cert-rank-stamp">
+                        <span>Rank Achieved:</span>
+                        <strong id="cert-rank">Researcher</strong>
+                    </div>
+                </div>
+                <div class="cert-footer">
+                    <button id="btn-close-cert" class="btn btn-primary">Lab Mein Wapas Jao 🔬</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
